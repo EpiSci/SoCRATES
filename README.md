@@ -1,4 +1,4 @@
-qqqqqq# System-on-Chip Resource Adaptive Scheduling using Deep Reinforcement Learning
+# System-on-Chip Resource Adaptive Scheduling using Deep Reinforcement Learning
 
 SoCRATES, the <u>S</u>ystem-<u>o</u>n-<u>C</u>hip <u>R</u>esource <u>A</u>dap<u>T</u>iv<u>E</u> <u>S</u>cheduling, is a DRL scheduler specializes in scheduling SoC jobs to heterogeneous resources showing the state-of-the-art run-time performance. The Eclectic Interaction Matching technique matches the individual `state-action` tuple with the reward received by the system clock frequency.
 
