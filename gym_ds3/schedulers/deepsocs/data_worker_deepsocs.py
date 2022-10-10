@@ -50,7 +50,7 @@ class RayDeepSoCSWorker(object):
 
     def rollout(self, episode, scale):
         env = get_env()
-        env.reset(self.args)
+        env.reset(args=self.args)
         env.env_storage.buf.exp['wall_time'].append(env.now())
         
         self.deepsocs.reset()

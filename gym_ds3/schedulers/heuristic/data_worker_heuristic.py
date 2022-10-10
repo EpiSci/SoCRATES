@@ -12,7 +12,7 @@ class HeuristicWorker(object):
         self.env = get_env()
 
     def run_episode(self, num_gradient_steps, scale):
-        self.env.reset(args)
+        self.env.reset(args=args)
         
         from gym_ds3.envs.utils.helper_envs import get_scheduler
         scheduler = get_scheduler(self.env, args.scheduler_name)

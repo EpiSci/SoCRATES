@@ -2,8 +2,27 @@
 
 SoCRATES, the <u>S</u>ystem-<u>o</u>n-<u>C</u>hip <u>R</u>esource <u>A</u>dap<u>T</u>iv<u>E</u> <u>S</u>cheduling, is a DRL scheduler specializes in scheduling SoC jobs to heterogeneous resources showing the state-of-the-art run-time performance. The Eclectic Interaction Matching technique matches the individual `state-action` tuple with the reward received by the system clock frequency.
 
+Our recent paper, [DRL for SoC: Myths and Realities](https://ieeexplore.ieee.org/document/9874880), investigates the feasibility of neural schedulers for the domain of SoC resource allocation through extensive experiments and comparison with non-neural, heuristic schedulers.
+
 The scheduler runs on the System-on-Chip (SoC) framework. The simulation is developed under [DS3 framework](https://arxiv.org/abs/2003.09016), which is a high-fidelity system-level domain-specific system-on-chip simulation environment. The system provides plug-and-play run-time policy and energy/power modules. The main objective is to optimize performances (i.e., run-time latency, power dissipation, and energy consumption). To enable ease-to-use deep reinforcement learning algorithms, we run scheduling algorithms using [DS3Gym](https://arxiv.org/abs/2104.13187) simulator built with Gym environment for SoC-level task scheduling.
 
+The comparison of the DRL algorithms is illustrated in below.
+
+<div align="center">
+  <img align="center" src="docs/rl_sched_analysis.png" width="500px" />
+  <figcaption><b><br>Figure 1: Overview of DRL scheduler properties in job injecting frequencies and resource types.</b></figcaption>
+</div>
+
+The evaluation of the run-time performances in different algorithms are depicted in below.
+
+<div align="center">
+  <img align="center" src="docs/overall_performance.png" width="900px" />
+  <figcaption><b><br>Figure 2: Overall performances of heuristic and DRL scheduling algorithms.</b></figcaption>
+</div>
+<div align="center">
+  <img align="center" src="docs/scalability.png" width="700px" />
+  <figcaption><b><br>Figure 3: Scalablility analysis on different scheduling algorithms.</b></figcaption>
+</div>
 
 ## Installation
 
@@ -23,46 +42,21 @@ conda activate socrates
 2. Install DS3Gym framework and required Python dependencies
 
 ```bash
-git clone https://github.com/anonymous19583415/SoCRATES
-cd SoCRATES
+pip install torch numpy
+pip install -r requirements.txt
 pip install -e .
-pip install simpy networkx gym numpy matplotlib
-```
-
-3. To run deep reinforcement learning based schedulers, install additional packages. DeepSoCS requires [TensorFlow](https://www.tensorflow.org/), and SoCRATES and SCARL require [PyTorch](https://pytorch.org/). For computation efficiency, we recommend installing a distributed computing package, [Ray](https://ray.io/).
-
-```bash
-pip install ray==1.3.0 tensorflow torch==1.8.1 torchvision==0.9.1
 ```
 
 
 ## Usage
 
-This repository supports heuristic and DRL schedulers. The comparison of the DRL algorithms is illustrated in below.
-
-<div align="center">
-  <img align="center" src="docs/rl_sched_analysis.png" width="500px" />
-  <figcaption><b><br>Figure 1: Overview of DRL scheduler properties in job injecting frequencies and resource types.</b></figcaption>
-</div>
-
-The evaluation of the run-time performances in different algorithms are depicted in below.
-
-<div align="center">
-  <img align="center" src="docs/overall_performance.png" width="900px" />
-  <figcaption><b><br>Figure 2: Overall performances of heuristic and DRL scheduling algorithms.</b></figcaption>
-</div>
-<div align="center">
-  <img align="center" src="docs/scalability.png" width="700px" />
-  <figcaption><b><br>Figure 3: Scalablility analysis on different scheduling algorithms.</b></figcaption>
-</div>
-
-To reproduce the results, one can execute the following commands corresponding scheduler.
+This repository supports heuristic and DRL schedulers. To reproduce the results, one can execute the following commands corresponding scheduler.
 
 ```bash
-python -m heuristic.run_heuristic_scheduler
-python -m scarl.run_scarl_scheduler
-python -m deepsocs.run_deepsocs_scheduler
-python -m socrates.run_socrates_scheduler
+python run_socrates_scheduler.py
+python run_heuristic_scheduler.py
+python run_scarl_scheduler.py
+python run_deepsocs_scheduler.py
 ```
 
 
@@ -88,12 +82,41 @@ To run simulations with these schedulers, you can simply give scheduler's name a
 
 ### DRL Schedulers
 
-The presented repository provides DRL-based schedulers: SoCRATES, [DeepSoCS](https://arxiv.org/abs/2005.07666) and [SCARL](https://ieeexplore.ieee.org/document/8876692). Detailed information for each scheduler are described in below.
+The presented repository provides DRL-based schedulers: [SoCRATES](https://arxiv.org/abs/2104.14354), [DeepSoCS](https://arxiv.org/abs/2005.07666) and [SCARL](https://ieeexplore.ieee.org/document/8876692). Detailed information for each scheduler are described in below.
 
 
-#### [DeepSoCS scheduler](https://arxiv.org/abs/2005.07666) (Electronics, 2020)
+#### [SoCRATES](https://arxiv.org/abs/2104.14354) (IEEE ICMLA, 2021)
+
+SoCRATES, the <u>S</u>ystem-<u>o</u>n-<u>C</u>hip <u>R</u>esource <u>A</u>dap<u>T</u>iv<u>E</u> <u>S</u>cheduling, is a DRL scheduler specializes in scheduling SoC jobs to heterogeneous resources showing the state-of-the-art run-time performance. The Eclectic Interaction Matching technique matches the individual `state-action' tuple with the reward received by the system clock frequency.
+
+```bibtex
+@inproceedings{sung2021socrates,
+  title={SoCRATES: System-on-Chip Resource Adaptive Scheduling using Deep Reinforcement Learning},
+  author={Sung, Tegg Taekyong and Ryu, Bo},
+  booktitle={2021 20th IEEE International Conference on Machine Learning and Applications (ICMLA)},
+  pages={496--501},
+  year={2021},
+  organization={IEEE}
+}
+```
+
+
+#### [DeepSoCS](https://arxiv.org/abs/2005.07666) (Electronics, 2020)
 
 DeepSoCS is a first DRL-based scheduler applied in DS3 framework. By extending [Decima architecture](https://arxiv.org/abs/1810.01963), DeepSoCS rearranges the given tasks using graph neural networks and policy networks. Then, it applies a greedy algorithm to map tasks to available resources. This mechanism similarly operated with HEFT algorithm.
+
+```bibtex
+@article{sung2020deepsocs,
+  title={DeepSoCS: A Neural Scheduler for Heterogeneous System-on-Chip (SoC) Resource Scheduling},
+  author={Sung, Tegg Taekyong and Ha, Jeongsoo and Kim, Jeewoo and Yahja, Alex and Sohn, Chae-Bong and Ryu, Bo},
+  journal={Electronics},
+  volume={9},
+  number={6},
+  pages={936},
+  year={2020},
+  publisher={Multidisciplinary Digital Publishing Institute}
+}
+```
 
 
 #### [SCARL](https://ieeexplore.ieee.org/abstract/document/8876692) (IEEE Access, 2019)
@@ -101,6 +124,40 @@ DeepSoCS is a first DRL-based scheduler applied in DS3 framework. By extending [
 SCARL applies [attentive embedding](https://arxiv.org/abs/1706.03762) to policy networks to map jobs to heterogeneous resources in a simple environment. 
 
 
+## Citation
+If you use SoCRLFramework in your work or use any models published in SoCRLFramework, please cite:
+
+```bibtex
+@article{sung2022deep,
+  title={Deep Reinforcement Learning for System-on-Chip: Myths and Realities},
+  author={Sung, Tegg Taekyong and Ryu, Bo},
+  journal={IEEE Access},
+  volume={10},
+  pages={98048--98064},
+  year={2022},
+  publisher={IEEE}
+}
+```
+
+```bibtex
+@inproceedings{sung2021socrates,
+  title={SoCRATES: System-on-Chip Resource Adaptive Scheduling using Deep Reinforcement Learning},
+  author={Sung, Tegg Taekyong and Ryu, Bo},
+  booktitle={2021 20th IEEE International Conference on Machine Learning and Applications (ICMLA)},
+  pages={496--501},
+  year={2021},
+  organization={IEEE}
+}
+```
+
+```bibtex
+@article{sung2021scalable,
+  title={A Scalable and Reproducible System-on-Chip Simulation for Reinforcement Learning},
+  author={Sung, Tegg Taekyong and Ryu, Bo},
+  journal={arXiv preprint arXiv:2104.13187},
+  year={2021}
+}
+```
 
 
 ## License

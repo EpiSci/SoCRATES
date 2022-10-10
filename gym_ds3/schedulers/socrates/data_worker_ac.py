@@ -34,7 +34,7 @@ class ACWorker(object):
     def compute_gradients(self, num_gradient_steps, weights, scale):
 
         self.env = get_env()
-        self.env.reset(self.args)
+        self.env.reset(args=self.args)
             
         # synchronize weights
         if weights is not None:

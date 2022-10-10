@@ -7,7 +7,7 @@ parser = argparse.ArgumentParser(description='SoCRATES Framework')
 
 # environment
 parser.add_argument('--resource_profile', type=str, default='DASH.SoC.Top.txt', help='resource file')
-parser.add_argument('--job_profile', type=str, default='job_Top.txt,job_Top2.txt,job_Top3.txt,job_Top4.txt,job_Top5.txt', help='job file')
+parser.add_argument('--job_profile', type=str, default='job_Top.txt', help='job file')
 parser.add_argument('--simulation_mode', type=str, default='performance', help='simulation mode (validation/performance)')
 parser.add_argument('--shared_memory', type=bool, default=False, help='sharing memory mode (if FALSE, PE_to_PE mode)')
 parser.add_argument('--verbose', type=bool, default=False, help='print debugging messages')
@@ -16,7 +16,7 @@ parser.add_argument('--scale', type=int, default=25, help='job injection frequec
 parser.add_argument('--simulation_length', type=int, default=5000, help='simulation length')
 parser.add_argument('--simulation_clk', type=int, default=1, help='simulation clock time')
 parser.add_argument('--warmup_period', type=int, default=0, help='warm-up period')
-parser.add_argument('--num_of_iterations', type=int, default=1, help='number of episodes')
+parser.add_argument('--num_of_iterations', type=int, default=10000, help='number of episodes')
 parser.add_argument('--seed', type=int, default=42, help='seed')
 parser.add_argument('--scheduler_name', type=str, default='socrates', help='Scheduler name (etf/met/stf/heftrt/random/scarl/deepsocs/socrates)')
 parser.add_argument('--max_num_jobs', type=int, default=3, help='length of job queue')
@@ -114,8 +114,8 @@ parser.add_argument('--wandb_entity', type=str, default='wandb_entity', help='en
 
 args = parser.parse_args()
 
-args.device = None
-if torch.cuda.is_available():
-    args.device = torch.device('cuda')
-else:
-    args.device = torch.device('cpu')
+args.device = 'cpu'
+# if torch.cuda.is_available():
+#     args.device = torch.device('cuda')
+# else:
+#     args.device = torch.device('cpu')

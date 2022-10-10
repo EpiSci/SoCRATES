@@ -35,7 +35,7 @@ class SCARLWorker(object):
     def compute_gradients(self, num_gradient_steps, weights, scale):
         
         env = get_env()
-        env.reset(self.args)
+        env.reset(args=self.args)
 
         # synchronize weights
         if weights is not None:
