@@ -5,23 +5,40 @@ SoCRATES, the <u>S</u>ystem-<u>o</u>n-<u>C</u>hip <u>R</u>esource <u>A</u>dap<u>
 Our recent paper, [DRL for SoC: Myths and Realities](https://ieeexplore.ieee.org/document/9874880), investigates the feasibility of neural schedulers for the domain of SoC resource allocation through extensive experiments and comparison with non-neural, heuristic schedulers.
 
 The scheduler runs on the System-on-Chip (SoC) framework. The simulation is developed under [DS3 framework](https://arxiv.org/abs/2003.09016), which is a high-fidelity system-level domain-specific system-on-chip simulation environment. The system provides plug-and-play run-time policy and energy/power modules. The main objective is to optimize performances (i.e., run-time latency, power dissipation, and energy consumption). To enable ease-to-use deep reinforcement learning algorithms, we run scheduling algorithms using [DS3Gym](https://arxiv.org/abs/2104.13187) simulator built with Gym environment for SoC-level task scheduling.
+The overall diagram of DS3 and the comparison of job characteristics are illustrated in below.
+
+<div align="center">
+  <img align="center" src="docs/ds3_workflow.pdf" width="500px" />
+  <figcaption><b><br>Figure 1: An overview of DS3 workflow.</b></figcaption>
+</div>
+<div align="center">
+  <img align="center" src="docs/edge_chain.pdf" width="500px" />
+  <figcaption><b><br>Figure 2: The edge density and chain ratio of cluster and SoC workloads.</b></figcaption>
+</div>
+
+An overall systematic workflow of DS3 with scheduling policies is depicted in below.
+
+<div align="center">
+  <img align="center" src="docs/neusched_arch.pdf" width="500px" />
+  <figcaption><b><br>Figure 3: The architecture of neural schedulers applied to DS3 simulator.</b></figcaption>
+</div>
 
 The comparison of the DRL algorithms is illustrated in below.
 
 <div align="center">
   <img align="center" src="docs/rl_sched_analysis.png" width="500px" />
-  <figcaption><b><br>Figure 1: Overview of DRL scheduler properties in job injecting frequencies and resource types.</b></figcaption>
+  <figcaption><b><br>Figure 4: An overview of DRL scheduler properties in job injecting frequencies and resource types.</b></figcaption>
 </div>
 
 The evaluation of the run-time performances in different algorithms are depicted in below.
 
 <div align="center">
-  <img align="center" src="docs/overall_performance.png" width="900px" />
-  <figcaption><b><br>Figure 2: Overall performances of heuristic and DRL scheduling algorithms.</b></figcaption>
+  <img align="center" src="docs/fin_eval.pdf" width="900px" />
+  <figcaption><b><br>Figure 5: Overall performances of heuristic and DRL scheduling algorithms.</b></figcaption>
 </div>
 <div align="center">
   <img align="center" src="docs/scalability.png" width="700px" />
-  <figcaption><b><br>Figure 3: Scalablility analysis on different scheduling algorithms.</b></figcaption>
+  <figcaption><b><br>Figure 6: Scalablility analysis on different scheduling algorithms.</b></figcaption>
 </div>
 
 ## Installation
@@ -51,6 +68,9 @@ pip install -e .
 ## Usage
 
 This repository supports heuristic and DRL schedulers. To reproduce the results, one can execute the following commands corresponding scheduler.
+
+Currently, we support training agents for CPU only. It takes approximately 1~2 hours for completion.
+
 
 ```bash
 python run_socrates_scheduler.py

@@ -18,7 +18,7 @@ parser.add_argument('--simulation_clk', type=int, default=1, help='simulation cl
 parser.add_argument('--warmup_period', type=int, default=0, help='warm-up period')
 parser.add_argument('--num_of_iterations', type=int, default=10000, help='number of episodes')
 parser.add_argument('--seed', type=int, default=42, help='seed')
-parser.add_argument('--scheduler_name', type=str, default='socrates', help='Scheduler name (etf/met/stf/heftrt/random/scarl/deepsocs/socrates)')
+parser.add_argument('--scheduler_name', type=str, default='deepsocs', help='Scheduler name (etf/met/stf/heftrt/random/scarl/deepsocs/socrates)')
 parser.add_argument('--max_num_jobs', type=int, default=3, help='length of job queue')
 parser.add_argument('--num_tasks_in_job', type=int, default=10, help='number of tasks in job profile')
 

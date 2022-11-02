@@ -44,7 +44,9 @@ class JobGenerator:
 
         self.capacity = self.args.max_num_jobs
 
-        if len(self.jobs.list) == 4:
+        if len(self.jobs.list) == 1:
+            self.job_probabilities = [1.0]
+        elif len(self.jobs.list) == 4:
             self.job_probabilities = [0.25,0.25,0.25,0.25] # 4
         elif len(self.jobs.list) == 5:
             self.job_probabilities = [0.2,0.2,0.2,0.2,0.2] # 5
