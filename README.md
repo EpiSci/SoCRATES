@@ -8,18 +8,18 @@ The scheduler runs on the System-on-Chip (SoC) framework. The simulation is deve
 The overall diagram of DS3 and the comparison of job characteristics are illustrated in below.
 
 <div align="center">
-  <img align="center" src="docs/ds3_workflow.pdf" width="500px" />
+  <img align="center" src="docs/ds3_workflow.png" width="500px" />
   <figcaption><b><br>Figure 1: An overview of DS3 workflow.</b></figcaption>
 </div>
 <div align="center">
-  <img align="center" src="docs/edge_chain.pdf" width="500px" />
+  <img align="center" src="docs/edge_chain.png" width="500px" />
   <figcaption><b><br>Figure 2: The edge density and chain ratio of cluster and SoC workloads.</b></figcaption>
 </div>
 
 An overall systematic workflow of DS3 with scheduling policies is depicted in below.
 
 <div align="center">
-  <img align="center" src="docs/neusched_arch.pdf" width="500px" />
+  <img align="center" src="docs/neusched_arch.png" width="500px" />
   <figcaption><b><br>Figure 3: The architecture of neural schedulers applied to DS3 simulator.</b></figcaption>
 </div>
 
@@ -33,7 +33,7 @@ The comparison of the DRL algorithms is illustrated in below.
 The evaluation of the run-time performances in different algorithms are depicted in below.
 
 <div align="center">
-  <img align="center" src="docs/fin_eval.pdf" width="900px" />
+  <img align="center" src="docs/fin_eval.png" width="900px" />
   <figcaption><b><br>Figure 5: Overall performances of heuristic and DRL scheduling algorithms.</b></figcaption>
 </div>
 <div align="center">
